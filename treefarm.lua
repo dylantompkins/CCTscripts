@@ -43,7 +43,9 @@ end
 function mineTree()
     os.setComputerLabel("mineTree")
     turtle.dig()
+    print("dig")
     turtle.forward()
+    print("forward")
 
     while true do
         if isBlock(log, "up") then
