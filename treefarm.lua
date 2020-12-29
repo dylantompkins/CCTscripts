@@ -65,8 +65,8 @@ function mineTree()
     end
 
     turtle.back()
-    turtle.select(saplingSlot)
-    turtle.place()
+    -- turtle.select(saplingSlot)
+    -- turtle.place()
 end
 
 -- looks left and right for a tree. if there is a tree, call mineTree(). returns to original orientation
