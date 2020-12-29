@@ -2,16 +2,17 @@
 local log = "minecraft:spruce_log"
 local cap = "minecraft:cobblestone"
 
--- farm setup: one end has two chests stacked (bottom is coal, top is saplings), other end has one chest (logs mined)
--- place tutle on two chest end, facing one chest end
+-- farm setup: one end has a chests with saplings, other end has chest where logs will be deposited
+-- place tutle on sapling chest end, facing log chest end
 -- saplings will be planted on each side of row
--- turtle inventory: coal, saplings, logs in rest
+-- turtle inventory: saplings, logs in rest
 
 -- TODO
 -- - move and store position, goto rel pos
--- - check fuel level and return when necessary
+-- - check fuel level and refuel when necessary
 -- - deposit logs every time we're at the end
 -- - check for grown trees and chop down, replace sapling
+-- - configurable wait between passes
 
 -- Utility functions
 
