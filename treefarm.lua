@@ -67,8 +67,8 @@ function mineTree()
     end
 
     turtle.back()
-    -- turtle.select(saplingSlot)
-    -- turtle.place()
+    turtle.select(saplingSlot)
+    turtle.place()
 end
 
 -- looks left and right for a tree. if there is a tree, call mineTree(). returns to original orientation
@@ -88,8 +88,10 @@ end
 
 function refuel()
     for i = startOfLogs, 16, 1 do
-        turtle.select(i)
-        turtle.refuel();
+        if turtle.getFuelLevel() == 0 then
+            turtle.select(i)
+            turtle.refuel();
+        end
     end
 end
 
