@@ -98,6 +98,8 @@ while true do
         turtle.turnRight()
     end
 
+    refuel()
+
     checkSides()
 
     turtle.forward()
