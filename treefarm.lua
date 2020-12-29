@@ -2,6 +2,7 @@
 local log = "minecraft:spruce_log"
 local cap = "minecraft:cobblestone"
 local saplingSlot = 1
+local startOfLogs = 2
 
 -- farm setup: one end has a chests with saplings, other end has chest where logs will be deposited
 -- place tutle on sapling chest end, facing log chest end
@@ -14,6 +15,7 @@ local saplingSlot = 1
 -- - deposit logs every time we're at the end
 -- - check for grown trees and chop down, replace sapling
 -- - configurable wait between passes
+-- - add check for changes on github
 
 -- Utility functions
 
@@ -85,7 +87,7 @@ function checkSides()
 end
 
 function refuel()
-    for i = 2, 9, 1 do
+    for i = startOfLogs, 16, 1 do
         turtle.select(i)
         turtle.refuel();
     end
