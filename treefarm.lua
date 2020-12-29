@@ -1,6 +1,7 @@
 -- CONFIG
 local log = "minecraft:spruce_log"
 local cap = "minecraft:cobblestone"
+local saplingSlot = 1
 
 -- farm setup: one end has a chests with saplings, other end has chest where logs will be deposited
 -- place tutle on sapling chest end, facing log chest end
@@ -62,6 +63,8 @@ function mineTree()
     end
 
     turtle.back()
+    turtle.select(saplingSlot)
+    turtle.place()
 end
 
 -- looks left and right for a tree. if there is a tree, call mineTree(). returns to original orientation
