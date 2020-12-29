@@ -14,4 +14,5 @@ else
     local file = fs.open(filename, "w")
     file.write(code)
     file.close()
+    print("Cloned " .. filename .. " from " .. branch)
 end
