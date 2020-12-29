@@ -84,6 +84,13 @@ function checkSides()
     turtle.turnLeft()
 end
 
+function refuel()
+    for i = 2, 9, 1 do
+        turtle.select(i)
+        turtle.refuel();
+    end
+end
+
 -- Main Loop
 while true do
     if isBlock(cap) then
