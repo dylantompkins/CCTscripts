@@ -3,6 +3,7 @@ local log = "minecraft:spruce_log"
 local cap = "minecraft:cobblestone"
 local saplingSlot = 1
 local startOfLogs = 2
+local chest = "minecraft:chest"
 
 -- farm setup: one end has a chests with saplings, other end has chest where logs will be deposited
 -- place tutle on sapling chest end, facing log chest end
@@ -95,11 +96,25 @@ function refuel()
     end
 end
 
+function fillSaplings()
+    turtle.select(saplingSlot)
+    turtle.suck()
+end
+
+function turn180()
+    turtle.turnRight()
+    turtle.turnRight()
+end
+
 -- Main Loop
 while true do
     if isBlock(cap) then
-        turtle.turnRight()
-        turtle.turnRight()
+        turn180()
+    end
+
+    if isBlock(chest) then
+        fillSaplings()
+        turn180()
     end
 
     refuel()
