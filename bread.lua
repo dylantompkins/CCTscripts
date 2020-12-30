@@ -41,7 +41,7 @@ function getWheat(slot)
         return true
     else
         turn180()
-        if trySuck() then
+        if trySuck(slot) then
             turtle.turnLeft()
             return true
         else
