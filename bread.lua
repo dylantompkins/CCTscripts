@@ -51,11 +51,22 @@ function getWheat(slot)
     end
 end
 
--- craft bread then drop
+-- clear inventory after craft
+function clear()
+    turtle.turnLeft()
+    for i = 1, 3, 1 do
+        turtle.select(i)
+        turtle.drop()
+    end
+    turtle.turnRight()
+end
+
+-- craft bread then drop product and excess
 function craft()
     turtle.select(4)
     turtle.craft()
     turtle.drop()
+    clear()
 end
 
 -- turn twice
