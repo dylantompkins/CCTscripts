@@ -1,14 +1,21 @@
 -- CONFIG
 local log = "minecraft:spruce_log"
+local sapling = "minecraft:spruce_sapling"
 local cap = "minecraft:cobblestone"
 local saplingSlot = 1
 local startOfLogs = 2
 local chest = "minecraft:chest"
 
--- farm setup: one end has a chests with saplings, other end has chest where logs will be deposited
--- place tutle on sapling chest end, facing log chest end
+-- FARM SETUP:
+-- one end has 2 inventories,
+-- bottom where logs will be dropped and
+-- top where saplings will be dropped and sucked,
+-- other end has a cap
+
+-- INSTRUCTIONS:
+-- place tutle anywhere between inventories and cap
 -- saplings will be planted on each side of row
--- turtle inventory: saplings, logs in rest
+-- place fuel in inventory
 
 -- TODO
 -- - move and store position, goto rel pos
@@ -20,9 +27,17 @@ local chest = "minecraft:chest"
 
 -- Utility functions
 
+-- Set turtle label as fuel then msg
+function setLabel(msg)
+    if msg ~= nil then
+        os.setComputerLabel(turtle.getFuelLevel .. " | " .. msg)
+    else
+        os.setComputerLabel("Fuel Level: " .. turtle.getFuelLevel())
+    end
+end
+
 -- Checks if block in front of turtle is the same as test
 function isBlock(test, direction)
-    os.setComputerLabel("isBlock")
     local block, blockType
 
     if direction == "up" then
@@ -44,11 +59,9 @@ end
 
 -- given turtle is facing bottom of tree trunk, mines tree and returns to original postion
 function mineTree()
-    os.setComputerLabel("mineTree")
+    setLabel("Mining Tree")
     turtle.dig()
-    print("dig")
     turtle.forward()
-    print("forward")
 
     while true do
         if isBlock(log, "up") then
@@ -74,7 +87,7 @@ end
 
 -- looks left and right for a tree. if there is a tree, call mineTree(). returns to original orientation
 function checkSides()
-    os.setComputerLabel("checkSides")
+    setLabel("Checking Sides")
     turtle.turnLeft()
     if isBlock(log) then
         mineTree()
@@ -87,37 +100,67 @@ function checkSides()
     turtle.turnLeft()
 end
 
+-- Uses up logs in inventory to fuel until it is full
 function refuel()
+    setLabel("Refueling")
     for i = startOfLogs, 16, 1 do
-        if turtle.getFuelLevel() == 0 then
+        if turtle.getFuelLevel() < turtle.getFuelLimit() then
             turtle.select(i)
             turtle.refuel();
         end
     end
 end
 
-function fillSaplings()
+-- Gets up to 1 stack of saplings in sapling slot
+function restock()
+    setLabel("Restocking")
+    turtle.up()
     turtle.select(saplingSlot)
     turtle.suck()
+    turtle.down()
+end
+
+-- 
+function deposit()
+    setLabel("Depositing")
+    for i = 1, 16, 1 do
+        turtle.select(i)
+        if turtle.getItemDetail().name == log then
+            turtle.drop()
+        elseif turtle.getItemDetail().name == sapling then
+            turtle.up()
+            turtle.drop()
+            turtle.down()
+        end
+    end
 end
 
 function turn180()
+    setLabel("Turning Around")
     turtle.turnRight()
     turtle.turnRight()
+end
+
+function onChest()
+    refuel()
+    deposit()
+    restock()
+    turn180()
 end
 
 -- Main Loop
 while true do
+    if turtle.getFuelLevel == 0 then
+        refuel()
+    end
+
     if isBlock(cap) then
         turn180()
     end
 
     if isBlock(chest) then
-        fillSaplings()
-        turn180()
+        onChest()
     end
-
-    refuel()
 
     checkSides()
 
