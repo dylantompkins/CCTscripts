@@ -4,7 +4,7 @@ local sapling = "minecraft:spruce_sapling"
 local cap = "minecraft:cobblestone"
 local saplingSlot = 1
 local startOfLogs = 2
-local chest = "minecraft:chest"
+local chest = "storagedrawers:spruce_full_drawers_1"
 
 -- FARM SETUP:
 -- one end has 2 inventories,
