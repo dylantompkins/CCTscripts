@@ -30,7 +30,7 @@ local chest = "minecraft:chest"
 -- Set turtle label as fuel then msg
 function setLabel(msg)
     if msg ~= nil then
-        os.setComputerLabel(turtle.getFuelLevel .. " | " .. msg)
+        os.setComputerLabel(turtle.getFuelLevel() .. " | " .. msg)
     else
         os.setComputerLabel("Fuel Level: " .. turtle.getFuelLevel())
     end
