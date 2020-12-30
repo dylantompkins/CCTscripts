@@ -126,14 +126,14 @@ function deposit()
     for i = 1, 16, 1 do
         turtle.select(i)
 
-        if turtle.getItemDetail() == nil then
-            -- do nothing
-        elseif turtle.getItemDetail().name == log then
-            turtle.drop()
-        elseif turtle.getItemDetail().name == sapling then
-            turtle.up()
-            turtle.drop()
-            turtle.down()
+        if turtle.getItemDetail() ~= nil then
+            if turtle.getItemDetail().name == log then
+                turtle.drop()
+            elseif turtle.getItemDetail().name == sapling then
+                turtle.up()
+                turtle.drop()
+                turtle.down()
+            end
         end
     end
 end
