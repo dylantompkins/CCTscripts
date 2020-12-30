@@ -15,7 +15,8 @@ local bread = "minecraft:bread"
 
 -- try to get wheat
 function trySuck(slot)
-    if turtle.inspect() ~= nil and turtle.inspect().name == inv then
+    local success, table = turtle.inspect()
+    if success == true and table.name == inv then
         turtle.select(slot)
         if turtle.suck() then
             if turtle.getItemDetail().name == wheat then
