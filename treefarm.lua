@@ -5,6 +5,7 @@ local cap = "minecraft:cobblestone"
 local saplingSlot = 1
 local startOfLogs = 2
 local chest = "storagedrawers:spruce_full_drawers_1"
+local fuelThreshold = 1000
 
 -- FARM SETUP:
 -- one end has 2 inventories,
@@ -104,9 +105,13 @@ end
 function refuel()
     setLabel("Refueling")
     for i = startOfLogs, 16, 1 do
-        if turtle.getFuelLevel() < turtle.getFuelLimit() then
-            turtle.select(i)
-            turtle.refuel();
+        while turtle.getFuelLevel() < fuelThreshold do
+            if turtle.getItemDetail() ~= nil then
+                turtle.select(i)
+                turtle.refuel(1);
+            else
+                break
+            end
         end
     end
 end
