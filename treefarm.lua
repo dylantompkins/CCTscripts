@@ -125,7 +125,10 @@ function deposit()
     setLabel("Depositing")
     for i = 1, 16, 1 do
         turtle.select(i)
-        if turtle.getItemDetail().name == log then
+
+        if turtle.getItemDetail.name == nil then
+            -- do nothing
+        elseif turtle.getItemDetail().name == log then
             turtle.drop()
         elseif turtle.getItemDetail().name == sapling then
             turtle.up()
