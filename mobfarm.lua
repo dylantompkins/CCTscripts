@@ -1,5 +1,6 @@
 -- CONFIG
 local dropTime = 60
+local hitTime = 1
 
 -- SETUP
 -- Concentrate all mobs to be killed on on block.
@@ -14,12 +15,19 @@ function dropAll()
     end
 end
 
--- Main loop
-while true do
-    print(os.clock())
-    if os.clock() % dropTime == 0 then
-        dropAll()
-    end
+function attack()
     turtle.attack()
-    sleep(1)
+    sleep(hitTime)
+end
+
+function checkTimer()
+    os.pullEvent(timerID)
+    dropAll()
+    os.startTimer(dropTime)
+end
+
+-- Main loop
+local timerID = os.startTimer(dropTime)
+while true do
+    parallel.waitForAny(attack, checkTimer)
 end
