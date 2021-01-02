@@ -1,3 +1,6 @@
+-- CONFIG
+local dropTime = 60
+
 -- SETUP
 -- Concentrate all mobs to be killed on on block.
 -- Place Melee Turtle facing mobs
@@ -13,7 +16,8 @@ end
 
 -- Main loop
 while true do
-    if os.clock() % 120 == 0 then
+    print(os.clock())
+    if os.clock() % dropTime == 0 then
         dropAll()
     end
     turtle.attack()
