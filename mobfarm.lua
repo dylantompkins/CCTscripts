@@ -13,8 +13,7 @@ end
 
 -- Main loop
 while true do
-    local response, reason = turtle.suck()
-    if reason == "No space for items" then
+    if os.clock() % 120 == 0 then
         dropAll()
     end
     turtle.attack()
