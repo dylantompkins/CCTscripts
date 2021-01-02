@@ -29,7 +29,7 @@ function checkTimer()
 end
 
 -- Main loop
-local timerID = os.startTimer(dropTime)
+timerID = os.startTimer(dropTime)
 while true do
     checkTimer()
     attack()
