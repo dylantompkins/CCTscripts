@@ -24,7 +24,7 @@ function checkTimer()
     local string = os.pullEvent(timerID)
     if string == "timer" then
         dropAll()
-        os.startTimer(dropTime)
+        timerID = os.startTimer(dropTime)
     end
 end
 
