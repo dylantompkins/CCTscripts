@@ -12,9 +12,9 @@ function dropAll()
 end
 
 -- Main loop
-turtle.select(16)
 while true do
-    if turtle.getItemCount() ~= 0 then
+    local response, reason = turtle.suck()
+    if reason == "No space for items" then
         dropAll()
     end
     turtle.attack()
