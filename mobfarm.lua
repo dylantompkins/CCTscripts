@@ -21,8 +21,9 @@ function attack()
 end
 
 function checkTimer()
-    os.pullEvent(timerID)
-    dropAll()
+    local string = os.pullEvent(timerID)
+    -- dropAll()
+    print (string)
     os.startTimer(dropTime)
 end
 
