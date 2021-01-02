@@ -20,17 +20,20 @@ function attack()
     sleep(hitTime)
 end
 
-function checkTimer()
-    local string = os.pullEvent(timerID)
-    if string == "timer" then
-        dropAll()
-        timerID = os.startTimer(dropTime)
-    end
-end
+-- function checkTimer()
+--     local string = os.pullEvent(timerID)
+--     if string == "timer" then
+--         dropAll()
+--         timerID = os.startTimer(dropTime)
+--     end
+-- end
 
 -- Main loop
 timerID = os.startTimer(dropTime)
 while true do
-    checkTimer()
-    attack()
+    local event, completed = os.pullEvent()
+    if event == "timer" and completed == timerID then
+        print("Timer Fired " .. os.clock())
+        timerID = os.startTimer(dropTime)
+    end
 end
