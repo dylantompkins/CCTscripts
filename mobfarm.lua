@@ -22,9 +22,10 @@ end
 
 function checkTimer()
     local string = os.pullEvent(timerID)
-    -- dropAll()
-    print (string)
-    os.startTimer(dropTime)
+    if string == "timer" then
+        dropAll()
+        os.startTimer(dropTime)
+    end
 end
 
 -- Main loop
