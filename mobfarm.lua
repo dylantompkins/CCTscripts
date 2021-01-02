@@ -31,5 +31,6 @@ end
 -- Main loop
 local timerID = os.startTimer(dropTime)
 while true do
-    parallel.waitForAny(attack, checkTimer)
+    checkTimer()
+    attack()
 end
