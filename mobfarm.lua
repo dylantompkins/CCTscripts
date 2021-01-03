@@ -36,4 +36,5 @@ while true do
         dropAll()
         timerID = os.startTimer(dropTime)
     end
+    attack()
 end
