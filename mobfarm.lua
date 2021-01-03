@@ -16,21 +16,23 @@ function dropAll()
 end
 
 function attack()
-    turtle.attack()
-    sleep(hitTime)
+    while true do
+        turtle.attack()
+        sleep(hitTime)
+    end
 end
 
 function checkTimer()
-    local event, completed = os.pullEvent()
-    if event == "timer" and completed == timerID then
-        print("Timer Fired: " .. os.clock())
-        dropAll()
-        timerID = os.startTimer(dropTime)
+    while true do
+        local event, completed = os.pullEvent()
+        if event == "timer" and completed == timerID then
+            print("Timer Fired: " .. os.clock())
+            dropAll()
+            timerID = os.startTimer(dropTime)
+        end
     end
 end
 
 -- Main loop
 timerID = os.startTimer(dropTime)
-while true do
-    checkTimer()
-end
+parallel.waitForAny(attack, checkTimer)
