@@ -33,7 +33,7 @@ timerID = os.startTimer(dropTime)
 while true do
     local event, completed = os.pullEvent()
     if event == "timer" and completed == timerID then
-        print("Timer Fired " .. os.clock())
+        dropAll()
         timerID = os.startTimer(dropTime)
     end
 end
