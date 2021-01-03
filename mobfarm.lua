@@ -1,5 +1,5 @@
 -- CONFIG
-local dropTime = 60
+local dropTime = 15
 local hitTime = 1
 
 -- SETUP
@@ -20,21 +20,17 @@ function attack()
     sleep(hitTime)
 end
 
--- function checkTimer()
---     local string = os.pullEvent(timerID)
---     if string == "timer" then
---         dropAll()
---         timerID = os.startTimer(dropTime)
---     end
--- end
+function checkTimer()
+    local event, completed = os.pullEvent()
+    if event == "timer" and completed == timerID then
+        print("Timer Fired: " .. os.clock())
+        dropAll()
+        timerID = os.startTimer(dropTime)
+    end
+end
 
 -- Main loop
 timerID = os.startTimer(dropTime)
 while true do
-    local event, completed = os.pullEvent()
-    if event == "timer" and completed == timerID then
-        dropAll()
-        timerID = os.startTimer(dropTime)
-    end
-    attack()
+    checkTimer()
 end
