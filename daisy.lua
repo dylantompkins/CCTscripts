@@ -11,29 +11,33 @@
 -- Utility functions
 -------------------------------------------------------
 
-function corner()
+function corner(action)
     turtle.forward()
+    action()
     turtle.turnLeft()
     turtle.forward()
-    turtle.turnLeft()
-end
-
-function side()
-    turtle.forward()
-    turtle.forward()
+    action()
     turtle.turnLeft()
 end
 
-function around()
-    corner()
-    side()
-    side()
-    side()
-    corner()
+function side(action)
+    turtle.forward()
+    action()
+    turtle.forward()
+    action()
+    turtle.turnLeft()
+end
+
+function around(action)
+    corner(action)
+    side(action)
+    side(action)
+    side(action)
+    corner(action)
     turtle.turnLeft()
 end
 
 -------------------------------------------------------
 -- Main loop
 -------------------------------------------------------
-around()
+around(turtle.placeDown)
