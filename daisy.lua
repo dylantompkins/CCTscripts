@@ -16,7 +16,7 @@ function corner(action)
     action()
     turtle.turnLeft()
     turtle.forward()
-    if select(2, turtle.inspectUp()).name ~= "botania:pure_daisy" then
+    if select(2, turtle.inspectDown()).name ~= "botania:pure_daisy" then
         action()
     end
     turtle.turnLeft()
