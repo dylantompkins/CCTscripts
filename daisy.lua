@@ -55,3 +55,7 @@ while true do
     around(turtle.digDown)
     deposit()
 end
+
+-- TODO
+-- State Machine
+-- Refueling
