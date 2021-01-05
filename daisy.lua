@@ -39,6 +39,12 @@ function around(action)
     turtle.turnLeft()
 end
 
+function deposit()
+    turtle.forward()
+    turtle.dropUp()
+    turtle.back()
+end
+
 -------------------------------------------------------
 -- Main loop
 -------------------------------------------------------
@@ -47,4 +53,5 @@ while true do
     around(turtle.placeDown)
     sleep(60)
     around(turtle.digDown)
+    deposit()
 end
