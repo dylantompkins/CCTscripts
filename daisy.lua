@@ -11,28 +11,25 @@
 -- Utility functions
 -------------------------------------------------------
 
+function corner()
+    turtle.forward()
+    turtle.turnLeft()
+    turtle.forward()
+    turtle.turnLeft()
+end
+
+function side()
+    turtle.forward()
+    turtle.forward()
+    turtle.turnLeft()
+end
+
 function around()
-    turtle.forward()
-    turtle.turnLeft()
-    turtle.forward()
-    turtle.turnLeft()
-
-    turtle.forward()
-    turtle.forward()
-    turtle.turnLeft()
-
-    turtle.forward()
-    turtle.forward()
-    turtle.turnLeft()
-
-    turtle.forward()
-    turtle.forward()
-    turtle.turnLeft()
-
-    turtle.forward()
-    turtle.turnLeft()
-    turtle.forward()
-    turtle.turnLeft()
+    corner()
+    side()
+    side()
+    side()
+    corner()
     turtle.turnLeft()
 end
 
