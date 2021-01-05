@@ -42,4 +42,9 @@ end
 -------------------------------------------------------
 -- Main loop
 -------------------------------------------------------
-around(turtle.digDown)
+while true do
+    turtle.suckUp(8)
+    around(turtle.placeDown)
+    sleep(60)
+    around(turtle.digDown)
+end
