@@ -1,6 +1,6 @@
 while true do
     turtle.dig()
-    turlte.forward()
+    turtle.forward()
     turtle.digUp()
     turtle.up()
     turtle.digUp()
